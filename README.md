@@ -1,32 +1,35 @@
 # Notifire - Outil de notification d'entreprise
 
-Ceci est un logiciel open source associant la technologie open source CachetHQ et BurntToast développé en C#
+Ceci est un logiciel open source associant la technologie CachetHQ et BurntToast développé en C#
 
-                                    
-
-
-
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183365-46689000-18d1-11e9-87cb-83a809c152c3.png)           
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183369-49638080-18d1-11e9-8cb1-614c7fac6050.png)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183373-4bc5da80-18d1-11e9-9430-833b52adebd0.png)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183506-b2e38f00-18d1-11e9-9217-9419c3faff0f.png)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183386-508a8e80-18d1-11e9-9a7d-31199ece72e0.png)
 
 Cette application à pour but de générer des notifications d'incident via le module BurntToast (PowerShell) sur  les postes Windows de l'organisation AramisAuto.
 
 ## Etape 1 : Le fonctionnement de CachetHQ pour l'outil.
 * L'admin créer un incident via un tableau de bord CachetHQ héberger par un serveur linux sous docker (doc here)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183388-52545200-18d1-11e9-88ce-38688a01144d.png)
 * La section composant doit contenir uniquement le nom des application impactée par un incident afin d'afficher la bonne images par application.
 
 ## Etape 2 : Le fonctionnement de l'outil
-* Lorsqu'un incident est créé, il génère un requête dite "HTTP" accessible via l'url suivant:
-
-
+* Lorsqu'un incident est créé, il génère un requête dite "HTTP" accessible via l'url suivant: 
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183392-54b6ac00-18d1-11e9-8206-e50a8ec898f9.png)
 * L'outil se charge de lire dynamiquement le contenu de la requête html et récupère les éléments suivant:
   + id : c'est le numéros individuel de l'incident, afin de mettre en cache la notification.
   + component_id : c'est le nom de l'application impactée
   + name : le titre de l'incident
   + message : le contenu du message
-   + created_at : la date de création de l'incident
+  + created_at : la date de création de l'incident
   + human_status : afin de gérer l’évolution de l'incident
+  
 * Il vérifie l’existence préalable de l'incident via le cache précédemment cité (id).
 * Il ajoute à la future notification la bonne image correspondante au nom de l'application impactée (compenent_id).
 * Il créer la notification sur le poste Windows.
+
 
 ## Etape 3 : Les plus de l'outil. 
 * L'outil se lance en tache de fond au lancement de Windows et apparaît dans la barre des icônes, le clic droit permet d’accéder aux fonctionnalités suivantes:
