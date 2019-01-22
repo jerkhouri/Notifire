@@ -118,17 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="FlecheDeDroite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fleche de droite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CachetHQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CachetHQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FlecheDeGauche" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fleche de gauche1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Slack_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Slack_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="zendesk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zendesk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FlecheDeDroite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fleche de droite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CasqueChantier" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\casque_chantier_jaune-z1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,10 +136,31 @@
   <data name="logo_aa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoAa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zendesk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zendesk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlecheDeGauche" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fleche de gauche1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="redmine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redmine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Slack_Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slack_Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avaya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avaya_Logo-880x704.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Gmail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gmail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Odigo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\odigo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Robusto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Robusto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Salesforce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\salesforce-logo-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

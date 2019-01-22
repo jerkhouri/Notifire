@@ -35,6 +35,15 @@
   <PropertyGroup>
     <ApplicationIcon>RobotAaIco.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -80,8 +89,15 @@
     </Compile>
     <Compile Include="KonamiSequence.cs" />
     <Compile Include="ModuleC.cs" />
+    <Compile Include="Notif.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetupNotifire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetupNotifire.Designer.cs">
+      <DependentUpon>SetupNotifire.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,7 +112,11 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetupNotifire.resx">
+      <DependentUpon>SetupNotifire.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,6 +204,11 @@
     <EmbeddedResource Include="Resources\warning.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="Resources\Robusto.png" />
+    <None Include="Resources\salesforce-logo-01.png" />
+    <None Include="Resources\odigo.png" />
+    <None Include="Resources\gmail.png" />
+    <None Include="Resources\Avaya_Logo-880x704.png" />
     <Content Include="RobotAaIco.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

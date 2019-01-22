@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.infosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.immoToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.zendeskToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.incidentsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.infosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,20 +55,7 @@
             this.incidentsToolStrip,
             this.infosToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(217, 114);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // infosToolStripMenuItem
-            // 
-            this.infosToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.logo_aa;
-            this.infosToolStripMenuItem.Name = "infosToolStripMenuItem";
-            this.infosToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.infosToolStripMenuItem.Text = "A propos de Notifire";
-            this.infosToolStripMenuItem.Click += new System.EventHandler(this.infosToolStripMenuItem_Click);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(217, 92);
             // 
             // immoToolStrip
             // 
@@ -94,13 +81,26 @@
             this.incidentsToolStrip.Text = "Ouvrir la page d\'incident";
             this.incidentsToolStrip.Click += new System.EventHandler(this.incidentsToolStrip_Click);
             // 
-            // Form1
+            // infosToolStripMenuItem
+            // 
+            this.infosToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.logo_aa;
+            this.infosToolStripMenuItem.Name = "infosToolStripMenuItem";
+            this.infosToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.infosToolStripMenuItem.Text = "A propos de Notifire";
+            this.infosToolStripMenuItem.Click += new System.EventHandler(this.infosToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            // 
+            // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "Accueil";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -117,8 +117,8 @@
         private System.Windows.Forms.ToolStripMenuItem immoToolStrip;
         private System.Windows.Forms.ToolStripMenuItem zendeskToolStrip;
         private System.Windows.Forms.ToolStripMenuItem incidentsToolStrip;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem infosToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

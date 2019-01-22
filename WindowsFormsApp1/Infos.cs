@@ -63,5 +63,12 @@ namespace WindowsFormsApp1
         {
             
         }
+
+        private void btn_setting_Click(object sender, EventArgs e)
+        {
+            SetupNotifire formSetup = new SetupNotifire();
+            ModuleC.firstLaunch = "no";
+            formSetup.Show();
+        }
     }
 }

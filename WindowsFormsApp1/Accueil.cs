@@ -17,77 +17,58 @@ using System.Net.Http;
 using System.Runtime.Caching;
 using Microsoft.QueryStringDotNET; // QueryString.NET
 using Newtonsoft.Json;
-
+using Newtonsoft.Json.Linq;
 
 namespace WindowsFormsApp1
 {
     public partial class Accueil : Form
-    {
-        private static readonly HttpClient client = new HttpClient();
-        //VARAIBLE CACHE
-        public string pathFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Notifire");
-        //VARIABLE GLOBALES SUR L'INCIDENT
-        public static string Id_Incident = null;
-        public static string Name_Incident = null;
-        public static string Message_Incident = null;
-        public static DateTime Date_Create_Incident;
-        public static string Component_id_Incident = null;
-        public static bool Never_notif = true;
-
+    {             
         public Accueil()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) //A l'ouverture du formula
         {
-            timer1.Start();
-            CreateCache();            
-        }
-
-        private void NotifStartup(string titre, string commentaire, string picture)
-        {
-
-            Runspace rs = RunspaceFactory.CreateRunspace();
-            rs.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            rs.Open();
-
-            PowerShell ps = PowerShell.Create();
-            ps.Runspace = rs;
-
-            ps.AddScript("Import-Module BurntToast");
-            ps.AddScript("New-BurntToastNotification -Text " + titre + ", \"" + commentaire + "\" -AppLogo \"" + picture +"\"");
-            ps.Invoke();
-
-
-            rs.Close();
-        }
+            ModuleC.firstLaunch = "yes";
+        }       
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            SetupNotifire();
+            this.Hide();
+        }       
+
+        private void SetupNotifire()
+        {
+            Console.WriteLine("Go");
+            string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //on charge le fichier dans la variable contenuFile
+            dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //On deserialize la variable en json dynamic
+
+            JObject rss = JObject.Parse(Json.ToString());            //on charge le json dans un objet
+            
+            if ((string)rss["Config"]["Done"] == "no"){ //si la sous section Done de Confid est egale à no alors
+                SetupNotifire setupNotifire = new SetupNotifire(); //initialise un nouveau formulaire
+                setupNotifire.ShowDialog();  //On met en pause le programme et affiche le formulaire
+            }
+
+            contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile);    //On relis le fichier car il a pu changer
+            Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //on redeserialize
+            rss = JObject.Parse(Json.ToString());       //on recharge le json
+
+            ModuleC.listYes = (JArray)rss["Config"]["listYes"]; //on met a jour la liste des app en yes
+
             var titre = "Notifire";
             var commentaire = "C'est ici que vous recevrez les notifications d'incident !";
-            //var picture = Directory.GetCurrentDirectory() + "\\Resources\\RobotAa.png";
             var picture = ModuleC.pathPitcure + "RobotAa.png";
 
+            Notif.NotifStartup(titre, commentaire, picture); //on affiche la notif
 
-            NotifStartup(titre, commentaire, picture);
-            this.Hide();
+            timer1.Start(); //on start le timer
+            
         }
 
-        private void CreateCache()
-        {            
-            if (!File.Exists(pathFile))
-            {
-                System.IO.Directory.CreateDirectory(pathFile);
-                pathFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Notifire\\Cache.txt");
-                if (!File.Exists(pathFile))
-                {
-                    new StreamWriter(pathFile);
-                }
-            }
-        }
-
+        //Propriétés du formulaires...
         private void immoToolStrip_Click(object sender, EventArgs e)
         {
             Process p = new Process();
@@ -117,78 +98,179 @@ namespace WindowsFormsApp1
         {            
             Form3 formInfos = new Form3();
             formInfos.Show();
-        }
+        }      
 
-        //NOTIFICATION 
 
 
         //TIMER TOUTES LES 10 SECONDES
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e)
         {
-            //MessageBox.Show(Directory.GetCurrentDirectory() + "\\Resources");
+
+            Console.WriteLine("-------");
             VerifNews();
         }
 
         //VERIFS NEWS
-        async void VerifNews()
+        private static readonly HttpClient client = new HttpClient();
+        public async void VerifNews()
         {
-            var responseString = await client.GetStringAsync(ModuleC.urlIncident);
+            Console.WriteLine("VerifNews");
+            var responseNew = await client.GetStringAsync(ModuleC.urlNewIncident);
+            var reponseClot = await client.GetStringAsync(ModuleC.urlClotIncident);
 
             try
             {
-                ParseToJson(responseString); //CONTENU DE LA PAGE HTML DANS httpResponseBody     
+                Console.WriteLine("new?");
+                if (ParseToJson(responseNew))
+                {
+                    var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));
+                    ParseToJsonCompenent(reponseName);
 
-                //var message = JsonConvert.DeserializeObject<dynamic>(ParseToJson(httpResponseBody));
+                    VerifAndGo();
+                }
+                else
+                {
+                    Console.WriteLine("no new");
+                }
 
-                VerifAndGo();
+                Console.WriteLine("");
+                Console.WriteLine("clot?");
+                if (ParseToJson(reponseClot))
+                {
+                    var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));
+                    ParseToJsonCompenent(reponseName);
 
-                //ParseToJson(httpResponseBody);       //ON APPEL LA VARIABLE toJSON
+                    VerifAndGo();
+                }
+                else
+                {
+                    Console.WriteLine("no clot");
+                }
+
+
+
             }
-            catch
-            {
-                //MessageBox.Show("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
+            catch { }
 
-                //Double click on the Package.appxmanifest file in your project. & Click on the "Capabilities" tab.Add the Private Networks capability to your project.
-            }
+
+            
         }
 
 
         //PARSER JSON
-        public void ParseToJson(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
-        {
+        public bool ParseToJson(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
+        {    
+            var message = JsonConvert.DeserializeObject<dynamic>(HttpString);
 
-            try
+            if (message.data.Count != 0)
             {
-
-                var message = JsonConvert.DeserializeObject<dynamic>(HttpString);
-
-
-                //var Messagebox = new MessageDialog(message.meta.pagination.total.ToString()).ShowAsync();
-
                 foreach (var num in message.data)
                 {
-                    Id_Incident = num.id.ToString();
-                    Name_Incident = num.name.ToString();
-                    Message_Incident = num.message.ToString();
-                    Component_id_Incident = num.component_id.ToString();
-                    Date_Create_Incident = DateCreater(num.created_at.ToString());
-                }
-                //var Messagebox = new MessageDialog("Name = "+ Name + " & message = " + Message + "& date de debut d'incident ="+ Date_Create).ShowAsync();                   
+                    ModuleC.Id_Incident = num.id.ToString();
+                    ModuleC.Name_Incident = num.name.ToString();
+                    ModuleC.Message_Incident = num.message.ToString();
+                    ModuleC.Component_id_Incident = num.component_id.ToString();
+                    ModuleC.Status_Incident = num.status.ToString();
+                    ModuleC.Date_Create_Incident = DateCreater(num.created_at.ToString());
+                }       
 
-
-
-                //Recupération de tous les incidents Agences et sieges
-
-                //Filtre par UO a venir
-
-                //Puis envoie de la notifs filtrer sur le poste (go sur une fonction)
-
+                return true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("We had a problem: " + ex.Message);
+            else
+            {                
+                return false;
             }
+
         }
+
+        public void ParseToJsonCompenent(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
+        {
+            var message = JsonConvert.DeserializeObject<dynamic>(HttpString);
+
+            foreach (var num in message.data)
+                {
+                    ModuleC.Compenent_Name = num.name.ToString();
+                }                           
+        }
+
+        
+        //VERIFY IN THE CACHE
+        public void VerifAndGo()
+        {
+            Console.WriteLine("Verif&go");
+            string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //On ecrit dans la variable contenuFile le contenu du fichier config dans appdata
+            dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile); //Deserialization du fichier json
+
+            JObject rss = JObject.Parse(Json.ToString()); //On rentre le contenu du JSON entier dans une variable
+            JObject cache = (JObject)rss["Cache"];      //On choisis la partie de traitement du json (ici Cache)
+                        
+            Console.WriteLine(ModuleC.Compenent_Name);
+
+            if (Json.Config.listYes.ToString().Contains(ModuleC.Compenent_Name) || Json.Config.listOblige.ToString().Contains(ModuleC.Compenent_Name)) //Verifie si present dans le conf app ok
+            {
+                Console.WriteLine(ModuleC.Compenent_Name + " Existe dans la liste des applis autorisées");
+
+                if (ModuleC.Status_Incident == "1") //Si c'est un nouvel incident alors on traite de cache des nouveaux incidents
+                {
+                    if (!Json.Cache.New.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
+                    {
+                        Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
+
+                        JArray cacheNewID = (JArray)cache["New"];  //On créer une liste contenant tous les id d'incidents
+                        cacheNewID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
+
+                        string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
+
+                        System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
+
+                        Console.WriteLine("Creation Notif");
+                        Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID");
+                    }
+
+                }
+                else if (ModuleC.Status_Incident == "4") //Si c'est un hold incident alors on traite de cache des anciens incidents
+                {
+                    if (!Json.Cache.Hold.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
+                    {
+                        Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
+
+                        JArray cacheHoldID = (JArray)cache["Hold"];  //On créer une liste contenant tous les id d'incidents
+                        cacheHoldID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
+
+                        string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
+
+                        System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
+
+                        Console.WriteLine("Creation Notif");
+                        Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine(ModuleC.Compenent_Name + " ne fais pas partis des applis autorisé");
+            }
+
+
+
+
+            
+            
+
+            
+            
+        }
+
 
         //Create DATETIME
         public DateTime DateCreater(string hold_date)
@@ -200,77 +282,7 @@ namespace WindowsFormsApp1
                                         Convert.ToInt16(hold_date.Substring(14, 2)),   //Minutes
                                         Convert.ToInt16(hold_date.Substring(17, 2)));  //Secondes
             return new_date;
-        }
-
-        //VERIFY IN THE CACHE
-        public void VerifAndGo()
-        {
-            string contenuFile = System.IO.File.ReadAllText(pathFile);
-
-
-            if (!contenuFile.Contains(Id_Incident))
-            {
-                //Create dataFile.txt in LocalCacheFolder and write “My text” to it 
-                var txt = contenuFile + Id_Incident + ";";
-                System.IO.File.WriteAllText(pathFile, txt);                          
-                
-
-                Notif(Name_Incident, Message_Incident, Component_id_Incident); //Generation de la notif
-            }
-        }
-
-        //NOTIF
-        private void Notif(string title_Incident, string content_Incident, string compenent_Incident)
-        {
-            //Declaration des variables
-            string title = title_Incident;
-            string content = content_Incident;
-            string picture = ModuleC.pathPitcure + "warning.png";
-            string signature = "Via Notifonder";
-            int compenent = Convert.ToInt16(compenent_Incident);
-
-            switch (compenent)
-            {
-                case 8: //Slack icone
-                    picture = ModuleC.pathPitcure + "Slack_Icon.png";
-                    signature = "Slack";
-                    break;
-                case 9: //Aramis Icone
-                    picture = ModuleC.pathPitcure + "logoAa.png";
-                    signature = "Site Web Aramis";
-                    break;
-                case 10: //Zendesk Icone
-                    picture = ModuleC.pathPitcure + "zendesk.png";
-                    signature = "Zendesk";
-                    break;
-                case 11: //Redmine Icone
-                    picture = ModuleC.pathPitcure + "redmine.png";
-                    signature = "Redmine";
-                    break;
-
-            }
-
-            title = title + " • " + signature;
-
-
-            Runspace rs = RunspaceFactory.CreateRunspace();
-            rs.ThreadOptions = PSThreadOptions.UseCurrentThread;
-            rs.Open();
-
-            PowerShell ps = PowerShell.Create();
-            ps.Runspace = rs;
-
-            ps.AddScript("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\"");
-            ps.Invoke();
-
-            rs.Close();
-
-
-
-            //DateTime localDate = DateTime.Now;
-            //MessageBox.Show(localDate + "   " + Date_Create_Incident);
-        }
-
+        }        
     }
 }
 

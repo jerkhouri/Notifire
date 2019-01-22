@@ -93,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_242483FF6AB04FA09708205B8763C02E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_25E672E33EF7B719C7BADA1B0A09C23D"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
         "MsmSig" = "8:_UNDEFINED"
@@ -165,6 +171,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_579020A16FB449C48DA0F645F9BA5CFC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_585DBDD1B10391D4A69B7A43B639E990"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
         "MsmSig" = "8:_UNDEFINED"
@@ -225,6 +237,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6E0CBE607EDC4AC2B22AF97C697B67DB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_717CCFF6D43601FF7E0BDCA0157FEE7E"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
         "MsmSig" = "8:_UNDEFINED"
@@ -281,6 +299,12 @@
         {
         "MsmKey" = "8:_93CE0854C9E4E84DE37500400DE07521"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_941F80CB0141423DB8CA4EF018FDDE51"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -369,6 +393,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B3302F934B9D40C1BC72CF5E54505EB7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B3F5009CF481CF891A73A16612C41982"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
         "MsmSig" = "8:_UNDEFINED"
@@ -425,6 +455,12 @@
         {
         "MsmKey" = "8:_C8D7CB1444765A8ED8AAA061BE54BCDA"
         "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C8E44772B388458CA614FC70FD063943"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -502,13 +538,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_25E672E33EF7B719C7BADA1B0A09C23D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
+        "OwnerKey" = "8:_585DBDD1B10391D4A69B7A43B639E990"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -526,7 +556,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_585DBDD1B10391D4A69B7A43B639E990"
+        "OwnerKey" = "8:_8C473652DD2747678EEA58E725B95181"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -853,6 +883,12 @@
         "OwnerKey" = "8:_6178DC890F81BC85F45652E2A7E42882"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_25E672E33EF7B719C7BADA1B0A09C23D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -871,6 +907,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -887,6 +939,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -1255,6 +1315,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_242483FF6AB04FA09708205B8763C02E"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\Robusto.png"
+            "TargetName" = "8:Robusto.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B116DAF0D7DA4AC3B9DABE4342704B21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_25E672E33EF7B719C7BADA1B0A09C23D"
             {
             "AssemblyRegister" = "3:1"
@@ -1594,6 +1674,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_579020A16FB449C48DA0F645F9BA5CFC"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\salesforce-logo-01.png"
+            "TargetName" = "8:Salesforce.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B116DAF0D7DA4AC3B9DABE4342704B21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_585DBDD1B10391D4A69B7A43B639E990"
             {
             "AssemblyRegister" = "3:1"
@@ -1842,6 +1942,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E0CBE607EDC4AC2B22AF97C697B67DB"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\odigo.png"
+            "TargetName" = "8:Odigo.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B116DAF0D7DA4AC3B9DABE4342704B21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_717CCFF6D43601FF7E0BDCA0157FEE7E"
             {
             "AssemblyRegister" = "3:1"
@@ -2077,6 +2197,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_941F80CB0141423DB8CA4EF018FDDE51"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\Avaya_Logo-880x704.png"
+            "TargetName" = "8:Avaya.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B116DAF0D7DA4AC3B9DABE4342704B21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95EB021570D9E8196B124FE230DA6474"
@@ -2440,6 +2580,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3302F934B9D40C1BC72CF5E54505EB7"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\gmail.png"
+            "TargetName" = "8:Gmail.png"
+            "Tag" = "8:"
+            "Folder" = "8:_B116DAF0D7DA4AC3B9DABE4342704B21"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B3F5009CF481CF891A73A16612C41982"
             {
             "AssemblyRegister" = "3:1"
@@ -2726,6 +2886,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8E44772B388458CA614FC70FD063943"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Documents\\Config.json"
+            "TargetName" = "8:Config.json"
+            "Tag" = "8:"
+            "Folder" = "8:_321950C006A1444DA36F9D0E432E2762"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2ABAC29A9C34779A15BFDA3C665581C"
@@ -3053,6 +3233,28 @@
                 {
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_A32B2851AAC44A83B92EFCF6AFF54A09"
+            {
+            "Name" = "8:#1915"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:AppDataFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_321950C006A1444DA36F9D0E432E2762"
+                    {
+                    "Name" = "8:Notifire"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_6EE5BFE9A91149BA92B8E9E6155891DD"
+                        "Folders"
+                        {
+                        }
+                    }
+                }
+            }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_B27F7B4054B84921BD938DCDD5174C32"
             {
             "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
@@ -3093,7 +3295,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Notifire"
         "ProductCode" = "8:{9B2D0160-4BE1-4EE6-BCD4-2B35A7A2EF7B}"
-        "PackageCode" = "8:{BCA428B7-F667-4B60-8768-92825104B7E0}"
+        "PackageCode" = "8:{5E31AFA8-7B23-4E6E-899D-357CA3BB9436}"
         "UpgradeCode" = "8:{541A6C69-69F2-4857-AB0A-A98C5F4C1A43}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
