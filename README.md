@@ -41,4 +41,9 @@ Cette application à pour but de générer des notifications d'incident via le m
  ## Etape 4 : Utilisation de l'outil
  * L'outil s'installe via un msi géneré grace aux module installer de visual studio.
  * Il faut installer le module [BurnToast](https://github.com/Windos/BurntToast) sur la machine cliente.
- * Lors du premier lancement, l'outil vas demander à l'utilisateur de choisir entre une serie d'application sur lesquelles il vas être notifier.
+ * Lors du premier lancement, l'outil vas demander à l'utilisateur de choisir entre une serie d'application sur lesquelles il vas être notifier, ce choix pourras être modifier par l'utilisateur dans le menu >Infos et >Paramètre.
+ 
+## Contributeurs
++ CachetHQ
++ BurnToast (Windows)
++ AramisAuto
