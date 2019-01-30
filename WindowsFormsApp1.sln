@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{B751ABC4-D11B-439F-B22A-098B01C5D932}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupV1", "SetupV1\SetupV1.vdproj", "{6F132E4E-DBE1-4027-9F50-2ED624D5F248}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Notifire", "Notifire\Notifire.vdproj", "{11025FD1-FFD7-40D9-AEAB-49EB770E2211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{B751ABC4-D11B-439F-B22A-098B01C5D932}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B751ABC4-D11B-439F-B22A-098B01C5D932}.Release|x86.ActiveCfg = Release|Any CPU
 		{B751ABC4-D11B-439F-B22A-098B01C5D932}.Release|x86.Build.0 = Release|Any CPU
-		{6F132E4E-DBE1-4027-9F50-2ED624D5F248}.Debug|Any CPU.ActiveCfg = Debug
-		{6F132E4E-DBE1-4027-9F50-2ED624D5F248}.Debug|x86.ActiveCfg = Debug
-		{6F132E4E-DBE1-4027-9F50-2ED624D5F248}.Release|Any CPU.ActiveCfg = Release
-		{6F132E4E-DBE1-4027-9F50-2ED624D5F248}.Release|x86.ActiveCfg = Release
+		{11025FD1-FFD7-40D9-AEAB-49EB770E2211}.Debug|Any CPU.ActiveCfg = Debug
+		{11025FD1-FFD7-40D9-AEAB-49EB770E2211}.Debug|x86.ActiveCfg = Debug
+		{11025FD1-FFD7-40D9-AEAB-49EB770E2211}.Release|Any CPU.ActiveCfg = Release
+		{11025FD1-FFD7-40D9-AEAB-49EB770E2211}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
