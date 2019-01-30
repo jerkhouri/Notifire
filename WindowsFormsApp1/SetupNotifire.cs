@@ -57,7 +57,19 @@ namespace WindowsFormsApp1
             if (Json.Config.listYes.ToString().Contains("Site Web Aramis"))
             {
                 disablePbx(pictureBox4);
-            }        
+            }
+            if (Json.Config.type.ToString().Contains("siege"))
+            {
+                cbx_siege.Checked = true;
+            }
+            if (Json.Config.type.ToString().Contains("agence"))
+            {
+                cbx_agence.Checked = true;
+            }
+            if (Json.Config.type.ToString().Contains("autres"))
+            {
+                cbx_autres.Checked = true;
+            }
 
 
 
@@ -124,12 +136,7 @@ namespace WindowsFormsApp1
         {
             disablePbx(pictureBox4);
             ajoutYes("Site Web Aramis");
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            pictureBox5.BorderStyle = BorderStyle.Fixed3D;
-        }
+        }                
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
@@ -151,11 +158,7 @@ namespace WindowsFormsApp1
             pictureBox9.BorderStyle = BorderStyle.Fixed3D;
         }
 
-        private void pictureBox10_Click(object sender, EventArgs e)
-        {
-            pictureBox10.BorderStyle = BorderStyle.Fixed3D;
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             //on change la valeur de la conf en yes
@@ -164,11 +167,30 @@ namespace WindowsFormsApp1
             jsonObj["Config"]["Done"] = "yes";
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
             System.IO.File.WriteAllText(ModuleC.pathSetupFile, output);
+            
+            if (this.cbx_siege.Checked == true)
+            {
+                jsonObj["Config"]["type"] = "siege";
+            }else if (this.cbx_agence.Checked == true)
+            {
+                jsonObj["Config"]["type"] = "agence";
+            }
+            else if (this.cbx_autres.Checked == true)
+            {
+                jsonObj["Config"]["type"] = "autres";
+            }
+            else
+            {
+                jsonObj["Config"]["type"] = "";
+            }
 
+            output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
+            System.IO.File.WriteAllText(ModuleC.pathSetupFile, output);
 
             //on ferme le formulaire
             this.Close();
-        }
+        }    
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -204,6 +226,10 @@ namespace WindowsFormsApp1
             pictureBox4.Enabled = true;
             pictureBox4.BorderStyle = BorderStyle.None;
 
+            cbx_siege.Checked = false;
+            cbx_agence.Checked = false;
+            cbx_autres.Checked = false;
+
             ajoutRemove();
         }
 
@@ -212,6 +238,32 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-        
+        private void cbx_siege_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbx_siege.Checked == true)
+            {
+                cbx_agence.Checked = false;
+                cbx_autres.Checked = false;
+            }
+        }
+
+        private void cbx_agence_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbx_agence.Checked == true)
+            {
+
+                cbx_siege.Checked = false;
+                cbx_autres.Checked = false;
+            }
+        }
+
+        private void cbx_autres_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbx_autres.Checked == true)
+            {
+                cbx_siege.Checked = false;
+                cbx_agence.Checked = false;
+            }
+        }
     }
 }

@@ -69,7 +69,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 39);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Version : 1.0.0 \r\nDate : Jan 10 2019 15:30\r\nLicence : Gratuite";
+            this.label2.Text = "Version : 1.2.0 \r\nDate : Jan 10 2019 15:30\r\nLicence : Gratuite";
             // 
             // linkLabel1
             // 

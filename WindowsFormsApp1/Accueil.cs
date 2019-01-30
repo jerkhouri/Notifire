@@ -35,8 +35,9 @@ namespace WindowsFormsApp1
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            SetupNotifire();
             this.Hide();
+            SetupNotifire();
+            
         }       
 
         private void SetupNotifire()
@@ -65,7 +66,7 @@ namespace WindowsFormsApp1
             Notif.NotifStartup(titre, commentaire, picture); //on affiche la notif
 
             timer1.Start(); //on start le timer
-            
+            timer_change_type.Start();
         }
 
         //Propriétés du formulaires...
@@ -98,16 +99,40 @@ namespace WindowsFormsApp1
         {            
             Form3 formInfos = new Form3();
             formInfos.Show();
-        }      
+        }
 
+        private void rentrerCesHeuresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Navigateur formNav = new Navigateur(); ;
+            ModuleC.nameUrl = "Redmine";
+            ModuleC.navUrl = "https://redmine.aramisauto.com";
+            formNav.Show();
+        } 
 
+        
 
         //TIMER TOUTES LES 10 SECONDES
-        private void timer1_Tick_1(object sender, EventArgs e)
+        private void timer1_Tick_1(object sender, EventArgs e) //Timer de verif de maj incident
         {
-
             Console.WriteLine("-------");
             VerifNews();
+        } 
+
+        private void timer_change_type_Tick(object sender, EventArgs e) //on verifie si l'utilisateur a changer son type dans les parametre
+        {
+            string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //on charge le fichier dans la variable contenuFile
+            dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //On deserialize la variable en json dynamic
+
+            JObject rss = JObject.Parse(Json.ToString());            //on charge le json dans un objet
+
+            if ((string)rss["Config"]["type"] == "siege")
+            { //si la sous section Done de Confid est egale à no alors
+                this.rentrerCesHeuresToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                this.rentrerCesHeuresToolStripMenuItem.Visible = false;
+            }
         }
 
         //VERIFS NEWS

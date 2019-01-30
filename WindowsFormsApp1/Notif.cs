@@ -33,40 +33,42 @@ namespace WindowsFormsApp1
             //Declaration des variables
             string title = title_Incident;
             string content = content_Incident;
-            string picture = ModuleC.pathPitcure + "warning.png";
+            string picture = null;
             string signature = "Via Notifonder";
             int compenent = Convert.ToInt16(compenent_Incident);
 
             switch (compenent)
             {
-                case 8: //Slack icone
+                case 1: //Slack icone
                     picture = ModuleC.pathPitcure + "Slack_Icon.png";
                     break;
-                case 9: //Aramis Icone
+                case 2: //Aramis Icone
                     picture = ModuleC.pathPitcure + "logoAa.png";
                     break;
-                case 10: //Zendesk Icone
+                case 3: //Zendesk Icone
                     picture = ModuleC.pathPitcure + "zendesk.png";
                     break;
-                case 11: //Redmine Icone
+                case 4: //Redmine Icone
                     picture = ModuleC.pathPitcure + "redmine.png";
                     break;
-                case 12: //Gmail Icone
+                case 5: //Gmail Icone
                     picture = ModuleC.pathPitcure + "Gmail.png";
                     break;
-                case 13: //Avaya icone
+                case 6: //Avaya icone
                     picture = ModuleC.pathPitcure + "Avaya.png";
                     break;
-                case 14: //Salesforce Icone
+                case 7: //Salesforce Icone
                     picture = ModuleC.pathPitcure + "Salesforce.png";
                     break;
-                case 15: //Odigo Icone
+                case 8: //Odigo Icone
                     picture = ModuleC.pathPitcure + "Odigo.png";
                     break;
-                case 16: //Robusto Icone
+                case 9: //Robusto Icone
                     picture = ModuleC.pathPitcure + "Robusto.png";
                     break;
-
+                case 10: //Autres
+                    picture = ModuleC.pathPitcure + "warning.png";
+                    break;
             }
 
             if (ModuleC.Status_Incident == "1")
