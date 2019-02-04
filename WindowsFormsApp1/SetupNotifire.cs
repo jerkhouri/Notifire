@@ -28,22 +28,25 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void SetupNotifire_Load(object sender, EventArgs e)
+        private void SetupNotifire_Load(object sender, EventArgs e) //Chargement du formulaire
         {
-            if (ModuleC.firstLaunch == "no")
+            if (ModuleC.firstLaunch == "no") //Si ce n'est pas la premiere fois que ce formulaire apparaît
             {
-                btn_plustard.Enabled = false;
+                //On cache plustard et on afficher le boutons quitter
+                btn_plustard.Enabled = false; 
                 btn_plustard.Visible = false;
                 btn_leave.Enabled = true;
                 btn_leave.Visible = true;
 
-                label1.Text = "Paramètre de notification Notifire";
+                label1.Text = "Paramètre de notification Notifire"; //On cange le titre 
             }
 
             string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //On ecrit dans la variable contenuFile le contenu du fichier config dans appdata
             dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile); //Deserialization du fichier json
 
-            if (Json.Config.listYes.ToString().Contains("Zendesk")){
+            //On gere l'affichage du formulaire
+
+            if (Json.Config.listYes.ToString().Contains("Zendesk")){ //si le cache contiens "zendesk" on le grise pour montrer qu'il est déja selectionner
                 disablePbx(pictureBox1);
             }
             if (Json.Config.listYes.ToString().Contains("Slack"))
@@ -126,14 +129,14 @@ namespace WindowsFormsApp1
             ajoutYes("Slack");
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void pictureBox3_Click(object sender, EventArgs e)  //Redmine
         {
             disablePbx(pictureBox3);
             ajoutYes("Redmine");
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
+        private void pictureBox4_Click(object sender, EventArgs e) //AramisAuto
+        { 
             disablePbx(pictureBox4);
             ajoutYes("Site Web Aramis");
         }                
@@ -159,7 +162,7 @@ namespace WindowsFormsApp1
         }
 
         
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)  //Button valider
         {
             //on change la valeur de la conf en yes
             string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); 
@@ -192,7 +195,7 @@ namespace WindowsFormsApp1
         }    
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //Button Demander plus tard
         {
             //on ferme le formulaire
             pictureBox1.Enabled = true;
@@ -212,7 +215,7 @@ namespace WindowsFormsApp1
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //Button Reinitialiser
         {
             pictureBox1.Enabled = true;
             pictureBox1.BorderStyle = BorderStyle.None;
@@ -233,12 +236,12 @@ namespace WindowsFormsApp1
             ajoutRemove();
         }
 
-        private void btn_leave_Click(object sender, EventArgs e)
+        private void btn_leave_Click(object sender, EventArgs e) //Button quitter
         {
             this.Close();
         }
 
-        private void cbx_siege_CheckedChanged(object sender, EventArgs e)
+        private void cbx_siege_CheckedChanged(object sender, EventArgs e) //CheckBox siege
         {
             if (cbx_siege.Checked == true)
             {
@@ -247,7 +250,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void cbx_agence_CheckedChanged(object sender, EventArgs e)
+        private void cbx_agence_CheckedChanged(object sender, EventArgs e) //CheckBox Agence
         {
             if (cbx_agence.Checked == true)
             {
@@ -257,7 +260,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void cbx_autres_CheckedChanged(object sender, EventArgs e)
+        private void cbx_autres_CheckedChanged(object sender, EventArgs e) //CheckBox Autres
         {
             if (cbx_autres.Checked == true)
             {

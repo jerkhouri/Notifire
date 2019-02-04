@@ -10,9 +10,9 @@ namespace WindowsFormsApp1
 {
     public class Notif
     {
-        public static void NotifStartup(string titre, string commentaire, string picture)
+        public static void NotifStartup(string titre, string commentaire, string picture) //fonction qui s'eecute une fois, au lancement de l'application.
         {
-
+            //Creation requete powershell
             Runspace rs = RunspaceFactory.CreateRunspace();
             rs.ThreadOptions = PSThreadOptions.UseCurrentThread;
             rs.Open();
@@ -20,15 +20,15 @@ namespace WindowsFormsApp1
             PowerShell ps = PowerShell.Create();
             ps.Runspace = rs;
 
-            ps.AddScript("Import-Module BurntToast");
-            ps.AddScript("New-BurntToastNotification -Text " + titre + ", \"" + commentaire + "\" -AppLogo \"" + picture + "\"");
-            ps.Invoke();
+            ps.AddScript("Import-Module BurntToast"); //On importe le module Burntoast
+            ps.AddScript("New-BurntToastNotification -Text " + titre + ", \"" + commentaire + "\" -AppLogo \"" + picture + "\""); //On genere la notification windows
+            ps.Invoke(); //on lance le code powershelle
 
 
-            rs.Close();
+            rs.Close(); //on ferme le runspace
         }
 
-        public static void CreateNotif(string title_Incident, string content_Incident, string compenent_Incident)
+        public static void CreateNotif(string title_Incident, string content_Incident, string compenent_Incident) //Creation de toutes le norifications
         {
             //Declaration des variables
             string title = title_Incident;
@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             string signature = "Via Notifonder";
             int compenent = Convert.ToInt16(compenent_Incident);
 
-            switch (compenent)
+            switch (compenent) //Variable pour charger les bonnes images
             {
                 case 1: //Slack icone
                     picture = ModuleC.pathPitcure + "Slack_Icon.png";
@@ -71,16 +71,16 @@ namespace WindowsFormsApp1
                     break;
             }
 
-            if (ModuleC.Status_Incident == "1")
+            if (ModuleC.Status_Incident == "1") //Si c'est un nouvel incident, le titre sera augmenter avec "Nouveau" en plus
             {
                 signature = "Nouveau";
             }
-            else if (ModuleC.Status_Incident == "4")
+            else if (ModuleC.Status_Incident == "4") //Si c'est un nouvel incident, le titre sera augmenter avec "Clôturé" en plus
             {
                 signature = "Clôture";
             }
 
-            title = title + " • " + signature;
+            title = title + " • " + signature; 
 
 
             Runspace rs = RunspaceFactory.CreateRunspace();
@@ -90,10 +90,12 @@ namespace WindowsFormsApp1
             PowerShell ps = PowerShell.Create();
             ps.Runspace = rs;
 
-            ps.AddScript("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\"");
-            ps.Invoke();
 
-            rs.Close();
+            ps.AddScript("Import-Module BurntToast"); //On importe le module Burntoast
+            ps.AddScript("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\""); //On genere la notification windows
+            ps.Invoke(); //on lance le code powershelle
+
+            rs.Close(); //on ferme le runspace
         }
     }
 }

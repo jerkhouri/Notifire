@@ -67,9 +67,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(98, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 39);
+            this.label2.Size = new System.Drawing.Size(129, 39);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Version : 1.2.0 \r\nDate : Jan 10 2019 15:30\r\nLicence : Gratuite";
+            this.label2.Text = "Version : 1.2.0 \r\nDate : Fev 04 2019 15:30\r\nLicence : Gratuite";
             // 
             // linkLabel1
             // 
@@ -131,6 +131,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "A propos de Notifire";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_FormClosed);
+            this.Load += new System.EventHandler(this.Form3_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form3_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form3_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

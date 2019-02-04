@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace WindowsFormsApp1
 {
-    public class ModuleC
+    public class ModuleC //Module utilisé par les autres classes!
     {
         //VARAIBLE Setup
         public static string pathSetupFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Notifire\\Config.json");
