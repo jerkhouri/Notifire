@@ -28,14 +28,33 @@ namespace WindowsFormsApp1
         //Variable pour incident
         public static string navUrl;
         public static string nameUrl;
-        public static string urlCachet = "http://192.168.253.10/";
-        public static string urlNewIncident = urlCachet+"api/v1/incidents?status=1&per_page=1&sort=id&order=desc";
-        public static string urlClotIncident = urlCachet + "api/v1/incidents?status=4&per_page=1&sort=id&order=desc";
+
+        public static string urlCachetPrimaire = "http://192.168.253.130/";
+        public static string urlCachetSecondaire = "http://192.168.253.131/";
+        public static string urlCachet = "http://192.168.253.134/";
+
+        public static string urlNewIncident(string urlCachet)
+        {
+            return urlCachet + "api/v1/incidents?status=1&per_page=1&sort=id&order=desc";
+        }
+
+        public static string urlClotIncident(string urlCachet)
+        {
+            return urlCachet + "api/v1/incidents?status=4&per_page=1&sort=id&order=desc";
+        }
+         
         public static string pathPitcure = "C:\\Program Files\\AramisAuto Manufacture\\Notifire\\Ressources\\";
 
         public static string GetUrlCompenent (string compenentID)
         {
            return urlCachet + "api/v1/components?id="+ compenentID + "&per_page=1";
         }
+
+        //Autres variables
+        public static string statusInternet;
+        public static string statusNotifire;
+        public static string responseNew;
+        public static string reponseClot;
+        public static int networkStatusINT = 2;
     }
 }

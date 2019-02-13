@@ -15,6 +15,7 @@ using System.Management.Automation.Runspaces;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Runtime.Caching;
+using System.Net.NetworkInformation;
 using Microsoft.QueryStringDotNET; // QueryString.NET
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -60,14 +61,10 @@ namespace WindowsFormsApp1
             rss = JObject.Parse(Json.ToString());       //on recharge le json
 
             ModuleC.listYes = (JArray)rss["Config"]["listYes"]; //on met a jour la liste des app en yes
+                       
+            Notif.NotifStartup(); //on affiche la notif
 
-            //On prepare la 1ère notification
-            var title = "Notifire"; //titre
-            var text = "C'est ici que vous recevrez les notifications d'incident !"; //texte
-            var picture = ModuleC.pathPitcure + "RobotAa.png"; //image
-
-            Notif.NotifStartup(title, text, picture); //on affiche la notif
-
+            Ping.Start(); //debut de ping pour accès internet
             timer1.Start(); //on start le timer pour les incidents
             timer_change_type.Start(); //on start le timer 2 (pour la conf)
         }
@@ -112,7 +109,7 @@ namespace WindowsFormsApp1
 
         //TIMER TOUTES LES 10 SECONDES
         private void timer1_Tick_1(object sender, EventArgs e) //Timer de verif de maj incident
-        {
+        {            
             Console.WriteLine("-------");
             VerifNews(); //on Charge la fonction verifnew (ligne 146)
         } 
@@ -141,15 +138,18 @@ namespace WindowsFormsApp1
         {
             try
             {
-                Console.WriteLine("VerifNews");
-                var responseNew = await client.GetStringAsync(ModuleC.urlNewIncident); //Url lien nouveaux incidents
-                var reponseClot = await client.GetStringAsync(ModuleC.urlClotIncident); //Url lien incidents clôts
 
+                Console.WriteLine("Serveur - VerifNews");
+
+                ModuleC.responseNew = await client.GetStringAsync(ModuleC.urlNewIncident(ModuleC.urlCachet)); //Url lien nouveaux incidents
+                ModuleC.reponseClot = await client.GetStringAsync(ModuleC.urlClotIncident(ModuleC.urlCachet)); //Url lien incidents clôts
+                    
+                ModuleC.statusNotifire = "Serveur : En ligne"; 
+            
                 incidentsToolStrip.Enabled = true; //si le client communique avec le serveur cachetHQ
-                notifyIcon1.Text = "Notifire - Service Opérationnel";
 
                 Console.WriteLine("new?");
-                if (ParseToJson(responseNew)) //Si il y a un incidents en cours
+                if (ParseToJson(ModuleC.responseNew)) //Si il y a un incidents en cours
                 {
                     var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident)); //On charge le contenu dans la variable
                     ParseToJsonCompenent(reponseName); //On parse la variable grace a la fonction ParseToCompenent (ligne 192)
@@ -163,7 +163,7 @@ namespace WindowsFormsApp1
 
                 Console.WriteLine("");
                 Console.WriteLine("clot?");
-                if (ParseToJson(reponseClot)) //Si il y a un incidents Clot 
+                if (ParseToJson(ModuleC.reponseClot)) //Si il y a un incidents Clot 
                 {
                     var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));  //On charge le contenu dans la variable
                     ParseToJsonCompenent(reponseName); //On parse la variable grace a la fonction ParseToCompenent (ligne 192)
@@ -174,10 +174,11 @@ namespace WindowsFormsApp1
                 {
                     Console.WriteLine("no clot");
                 }
+
             }
             catch {
                 incidentsToolStrip.Enabled = false; //si le client ne communique pas avec le serveur cachetHQ
-                notifyIcon1.Text = "Notfire - Service Indisponible";
+                ModuleC.statusNotifire = "Serveur : Indisponibles";
             }            
         }
 
@@ -211,11 +212,21 @@ namespace WindowsFormsApp1
         public void ParseToJsonCompenent(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
         {
             var message = JsonConvert.DeserializeObject<dynamic>(HttpString); //On deserialise le contenue du lien dans la variable message
-
-            foreach (var num in message.data) //On charge les nom du composant dans la variables
+            
+            if (message.data.Count != 0)
             {
+                Console.WriteLine("pas vide");
+                foreach (var num in message.data) //On charge les nom du composant dans la variables
+                {
                     ModuleC.Compenent_Name = num.name.ToString();
-                }                           
+                }
+            }
+            else
+            {
+                Console.WriteLine("vide");
+                ModuleC.Compenent_Name = "Autres...";
+            }
+            Console.WriteLine(ModuleC.Compenent_Name);
         }
 
         
@@ -288,6 +299,11 @@ namespace WindowsFormsApp1
         }
 
 
+
+
+
+
+
         //Create DATETIME
         public DateTime DateCreater(string hold_date) //Generation de la date.
         {
@@ -298,7 +314,58 @@ namespace WindowsFormsApp1
                                         Convert.ToInt16(hold_date.Substring(14, 2)),   //Minutes
                                         Convert.ToInt16(hold_date.Substring(17, 2)));  //Secondes
             return new_date;
-        }        
+        }
+
+        
+        private void Ping_Tick(object sender, EventArgs e) //verif d'accès à internet local
+        {
+            try
+            {              
+                Ping myPing = new Ping();
+                PingReply reply = myPing.Send("8.8.8.8", 1000);
+                if (reply.Status == IPStatus.Success)
+                {
+                    immoToolStrip.Enabled = true;
+                    zendeskToolStrip.Enabled = true;
+                    rentrerCesHeuresToolStripMenuItem.Enabled = true;
+                    incidentsToolStrip.Enabled = true;
+
+                    timer1.Enabled = true;
+                    timer_change_type.Enabled = true;
+
+                    ModuleC.statusInternet = "Connecté à Internet";
+
+                    ModuleC.networkStatusINT = 2;
+                }
+                
+            }
+            catch
+            {
+                if(ModuleC.networkStatusINT != 0)
+                {
+                    immoToolStrip.Enabled = false;
+                    zendeskToolStrip.Enabled = false;
+                    rentrerCesHeuresToolStripMenuItem.Enabled = false;
+                    incidentsToolStrip.Enabled = false;
+
+                    timer1.Enabled = false;
+                    timer_change_type.Enabled = false;
+
+
+                    Console.WriteLine("Pas de connexion internet");
+                    ModuleC.statusInternet = "Pas d'accès à internet";
+
+                    //Notif.NotifStartup();
+
+                    var titre = "Accès internet interrompu"; //titre
+                    var commentaire = "Il se pourrait que votre câble soit mal branché..."; //texte
+                    Notif.NotifPing(titre, commentaire);
+
+                    ModuleC.networkStatusINT = 0;
+                }                
+            }
+
+        }
     }
 }
 

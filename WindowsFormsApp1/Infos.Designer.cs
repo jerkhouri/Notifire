@@ -36,6 +36,8 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_setting = new System.Windows.Forms.Button();
+            this.lbl_status = new System.Windows.Forms.Label();
+            this.lbl_network = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 33);
+            this.label2.Location = new System.Drawing.Point(98, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 39);
             this.label2.TabIndex = 2;
@@ -114,11 +116,31 @@
             this.btn_setting.UseVisualStyleBackColor = true;
             this.btn_setting.Click += new System.EventHandler(this.btn_setting_Click);
             // 
+            // lbl_status
+            // 
+            this.lbl_status.AutoSize = true;
+            this.lbl_status.Location = new System.Drawing.Point(98, 67);
+            this.lbl_status.Name = "lbl_status";
+            this.lbl_status.Size = new System.Drawing.Size(76, 13);
+            this.lbl_status.TabIndex = 7;
+            this.lbl_status.Text = "Status : Online";
+            this.lbl_status.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // lbl_network
+            // 
+            this.lbl_network.AutoSize = true;
+            this.lbl_network.Location = new System.Drawing.Point(98, 80);
+            this.lbl_network.Name = "lbl_network";
+            this.lbl_network.Size = new System.Drawing.Size(0, 13);
+            this.lbl_network.TabIndex = 8;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(236, 252);
+            this.Controls.Add(this.lbl_network);
+            this.Controls.Add(this.lbl_status);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
@@ -150,5 +172,7 @@
         private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_setting;
+        private System.Windows.Forms.Label lbl_status;
+        private System.Windows.Forms.Label lbl_network;
     }
 }

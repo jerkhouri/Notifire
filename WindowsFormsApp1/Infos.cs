@@ -18,7 +18,11 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e){}
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            lbl_status.Text = ModuleC.statusNotifire;
+            lbl_network.Text = ModuleC.statusInternet;
+        }
 
         private void label1_Click(object sender, EventArgs e){}
 
@@ -43,7 +47,7 @@ namespace WindowsFormsApp1
 
         private void Form3_FormClosed(object sender, FormClosedEventArgs e) { }
 
-
+        private void label3_Click(object sender, EventArgs e){}
 
 
 
@@ -79,5 +83,7 @@ namespace WindowsFormsApp1
         }
 
         private void Form3_KeyDown(object sender, KeyEventArgs e) { }
+
+        
     }
 }

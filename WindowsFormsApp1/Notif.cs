@@ -5,13 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
     public class Notif
     {
-        public static void NotifStartup(string titre, string commentaire, string picture) //fonction qui s'eecute une fois, au lancement de l'application.
+        public static void NotifStartup() //fonction qui s'eecute une fois, au lancement de l'application.
         {
+            //On prepare la 1ère notification
+            var titre = "Notifire"; //titre
+            var commentaire = "C'est ici que vous recevrez les notifications d'incident !"; //texte
+            var picture = ModuleC.pathPitcure + "RobotAa.png"; //image
+
+
             //Creation requete powershell
             Runspace rs = RunspaceFactory.CreateRunspace();
             rs.ThreadOptions = PSThreadOptions.UseCurrentThread;
@@ -26,7 +33,7 @@ namespace WindowsFormsApp1
 
 
             rs.Close(); //on ferme le runspace
-        }
+        }       
 
         public static void CreateNotif(string title_Incident, string content_Incident, string compenent_Incident) //Creation de toutes le norifications
         {
@@ -69,6 +76,9 @@ namespace WindowsFormsApp1
                 case 10: //Autres
                     picture = ModuleC.pathPitcure + "warning.png";
                     break;
+                case 0: //Autres
+                    picture = ModuleC.pathPitcure + "warning.png";
+                    break;
             }
 
             if (ModuleC.Status_Incident == "1") //Si c'est un nouvel incident, le titre sera augmenter avec "Nouveau" en plus
@@ -94,6 +104,29 @@ namespace WindowsFormsApp1
             ps.AddScript("Import-Module BurntToast"); //On importe le module Burntoast
             ps.AddScript("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\""); //On genere la notification windows
             ps.Invoke(); //on lance le code powershelle
+
+            rs.Close(); //on ferme le runspace
+        }
+
+
+        public static void NotifPing(string titre, string commentaire) //fonction qui s'eecute une fois, au lancement de l'application.
+        {
+            //On prepare la 1ère notification            
+            var picture = ModuleC.pathPitcure + "network.png"; //image
+
+
+            //Creation requete powershell
+            Runspace rs = RunspaceFactory.CreateRunspace();
+            rs.ThreadOptions = PSThreadOptions.UseCurrentThread;
+            rs.Open();
+
+            PowerShell ps = PowerShell.Create();
+            ps.Runspace = rs;
+
+            ps.AddScript("Import-Module BurntToast"); //On importe le module Burntoast
+            ps.AddScript("New-BurntToastNotification -Text \"" + titre + "\", \"" + commentaire + "\" -AppLogo \"" + picture + "\""); //On genere la notification windows
+            ps.Invoke(); //on lance le code powershelle
+
 
             rs.Close(); //on ferme le runspace
         }
