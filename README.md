@@ -7,6 +7,7 @@ Ceci est un logiciel open source associant la technologie CachetHQ et BurntToast
            [![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183373-4bc5da80-18d1-11e9-9430-833b52adebd0.png)](https://github.com/Windos/BurntToast)           
 [![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183506-b2e38f00-18d1-11e9-9217-9419c3faff0f.png)](https://docs.microsoft.com/fr-fr/dotnet/csharp/programming-guide/)           
 [![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183386-508a8e80-18d1-11e9-9a7d-31199ece72e0.png)](https://www.aramisauto.com/)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/54599218-77cd1b80-4a3a-11e9-9039-27b414508753.png)
 
 Cette application à pour but de générer des notifications d'incident via le module BurntToast (PowerShell) sur  les postes Windows de l'organisation AramisAuto.
 
