@@ -17,7 +17,7 @@ Cette application à pour but de générer des notifications d'incident via le m
 
 ## Etape 2 : Le fonctionnement de l'outil
 * Lorsqu'un incident est créé, il génère un requête dite "HTTP" accessible via l'url suivant: 
-![placeholder - copie](https://user-images.githubusercontent.com/39912632/51183392-54b6ac00-18d1-11e9-8206-e50a8ec898f9.png)
+![placeholder - copie](https://user-images.githubusercontent.com/39912632/54598057-00968800-4a38-11e9-86d0-826364afb537.png))
 * L'outil se charge de lire dynamiquement le contenu de la requête html et récupère les éléments suivant:
   + id : c'est le numéros individuel de l'incident, afin de mettre en cache la notification.
   + component_id : c'est le nom de l'application impactée
