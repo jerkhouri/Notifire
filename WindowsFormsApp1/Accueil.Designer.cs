@@ -65,7 +65,7 @@
             this.immoToolStrip.Name = "immoToolStrip";
             this.immoToolStrip.Size = new System.Drawing.Size(216, 22);
             this.immoToolStrip.Text = "Créer une demande Immo";
-            this.immoToolStrip.Click += new System.EventHandler(this.ImmoToolStrip_Click);
+            this.immoToolStrip.Click += new System.EventHandler(this.immoToolStrip_Click);
             // 
             // zendeskToolStrip
             // 
@@ -73,7 +73,7 @@
             this.zendeskToolStrip.Name = "zendeskToolStrip";
             this.zendeskToolStrip.Size = new System.Drawing.Size(216, 22);
             this.zendeskToolStrip.Text = "Contactez l\'équipe support";
-            this.zendeskToolStrip.Click += new System.EventHandler(this.ZendeskToolStrip_Click);
+            this.zendeskToolStrip.Click += new System.EventHandler(this.zendeskToolStrip_Click);
             // 
             // rentrerCesHeuresToolStripMenuItem
             // 
@@ -82,7 +82,7 @@
             this.rentrerCesHeuresToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.rentrerCesHeuresToolStripMenuItem.Text = "Rentrer ces heures";
             this.rentrerCesHeuresToolStripMenuItem.Visible = false;
-            this.rentrerCesHeuresToolStripMenuItem.Click += new System.EventHandler(this.RentrerCesHeuresToolStripMenuItem_Click);
+            this.rentrerCesHeuresToolStripMenuItem.Click += new System.EventHandler(this.rentrerCesHeuresToolStripMenuItem_Click);
             // 
             // incidentsToolStrip
             // 
@@ -90,7 +90,7 @@
             this.incidentsToolStrip.Name = "incidentsToolStrip";
             this.incidentsToolStrip.Size = new System.Drawing.Size(216, 22);
             this.incidentsToolStrip.Text = "Ouvrir la page d\'incident";
-            this.incidentsToolStrip.Click += new System.EventHandler(this.IncidentsToolStrip_Click);
+            this.incidentsToolStrip.Click += new System.EventHandler(this.incidentsToolStrip_Click);
             // 
             // infosToolStripMenuItem
             // 
@@ -98,12 +98,12 @@
             this.infosToolStripMenuItem.Name = "infosToolStripMenuItem";
             this.infosToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.infosToolStripMenuItem.Text = "A propos de Notifire";
-            this.infosToolStripMenuItem.Click += new System.EventHandler(this.InfosToolStripMenuItem_Click);
+            this.infosToolStripMenuItem.Click += new System.EventHandler(this.infosToolStripMenuItem_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick_1);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // Accueil
             // 

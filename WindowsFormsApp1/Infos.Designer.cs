@@ -35,6 +35,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn_ok = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_setting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +67,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(98, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 39);
+            this.label2.Size = new System.Drawing.Size(128, 39);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Version : 1.2.0 \r\nDate : Fev 04 2019 15:30\r\nLicence : Gratuite";
+            this.label2.Text = "Version : 1.2.0 \r\nDate : Jan 10 2019 15:30\r\nLicence : Gratuite";
             // 
             // linkLabel1
             // 
@@ -96,6 +97,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_setting);
             this.panel1.Controls.Add(this.btn_ok);
             this.panel1.Location = new System.Drawing.Point(-10, 205);
             this.panel1.Name = "panel1";
@@ -119,7 +121,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "A propos de Notifire";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_FormClosed);
-            //this.Load += new System.EventHandler(this.Form3_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form3_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form3_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -137,5 +138,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_setting;
     }
 }
