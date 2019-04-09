@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
         }               
 
         //Propriétés du formulaires...
-        private void immoToolStrip_Click(object sender, EventArgs e)
+        private void ImmoToolStrip_Click(object sender, EventArgs e)
         {
             Process p = new Process();
             p.StartInfo.FileName = "https://docs.google.com/a/aramisauto.com/forms/d/e/1FAIpQLSc81fE_zGyhovE-rmtxDEayjZvZP-uFZiUzZMNe4JDQsEG46Q/viewform?c=0&w=1";
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
             formNav.Show();
         }
 
-        private void incidentsToolStrip_Click(object sender, EventArgs e)
+        private void IncidentsToolStrip_Click(object sender, EventArgs e)
         {
             Navigateur formNav = new Navigateur();;
             ModuleC.nameUrl = "Page d'incidents";
@@ -70,13 +70,13 @@ namespace WindowsFormsApp1
             formNav.Show();
         }
 
-        private void infosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InfosToolStripMenuItem_Click(object sender, EventArgs e)
         {            
             Form3 formInfos = new Form3();
             formInfos.Show();
         }
 
-        private void rentrerCesHeuresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RentrerCesHeuresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Navigateur formNav = new Navigateur(); ;
             ModuleC.nameUrl = "Redmine";
@@ -87,7 +87,7 @@ namespace WindowsFormsApp1
         
 
         //TIMER TOUTES LES 10 SECONDES
-        private void timer1_Tick_1(object sender, EventArgs e) //Timer de verif de maj incident
+        private void Timer1_Tick_1(object sender, EventArgs e) //Timer de verif de maj incident
         {
             Console.WriteLine("-------");
             VerifNews();

@@ -48,10 +48,11 @@ namespace WindowsFormsApp1
                 client.DownloadFile(ModuleC.urlPicture + compenent, ModuleC.pathRoamingFile + "Pictures\\" + compenent+".png");
             }
 
-            if (compenent != 10)
+            if (compenent != 0)
             {
                 picture = ModuleC.pathRoamingFile + "Pictures\\" + compenent + ".png";
             }
+            Console.WriteLine("Chemin image = " + picture);
 
 
             if (ModuleC.Status_Incident == "1")
