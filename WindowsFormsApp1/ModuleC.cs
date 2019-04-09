@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
+
 namespace WindowsFormsApp1
 {
     public class ModuleC //Module utilisé par les autres classes!
     {
         //VARAIBLE Setup
         public static string pathSetupFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Notifire\\Config.json");
+        public static string pathRoamingFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Notifire\\");
         public static string cache = null;
         public static string SetupDone = null;
         public static JArray listYes = null;
@@ -28,10 +30,11 @@ namespace WindowsFormsApp1
         //Variable pour incident
         public static string navUrl;
         public static string nameUrl;
-        public static string urlCachet = "http://192.168.253.10/";
+        public static string urlCachet = "https://incidents.infractus.fr/";
         public static string urlNewIncident = urlCachet+"api/v1/incidents?status=1&per_page=1&sort=id&order=desc";
         public static string urlClotIncident = urlCachet + "api/v1/incidents?status=4&per_page=1&sort=id&order=desc";
         public static string pathPitcure = "C:\\Program Files\\AramisAuto Manufacture\\Notifire\\Ressources\\";
+        public static string urlPicture = "https://notifire.infractus.fr/upload/pictures.php/?img=";
 
         public static string GetUrlCompenent (string compenentID)
         {

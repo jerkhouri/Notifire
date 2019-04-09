@@ -28,199 +28,155 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        //Au lancement de l'application
         private void Form1_Load(object sender, EventArgs e) //A l'ouverture du formula
         {
-            ModuleC.firstLaunch = "yes";
+            this.Hide();            
         }       
+
         private void Form1_Shown(object sender, EventArgs e)
         {
-            this.Hide();
-            SetupNotifire();
-        }       
-        private void SetupNotifire() //PREMIER LANCEMENT DE L'APPLICATION
-        {
-            Console.WriteLine("Go");
+            var titre = "Notifire";
+            var commentaire = "C'est ici que vous recevrez les notifications d'incident !";
+            var picture = ModuleC.pathPitcure + "RobotAa.png";
 
-            //Fichier Cache de paramêtre de l'application
-            string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //on charge le fichier dans la variable contenuFile
-            dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //On deserialize la variable en json dynamic
+            Notif.NotifStartup(titre, commentaire, picture); //on affiche la notif
 
-            JObject rss = JObject.Parse(Json.ToString());            //on charge le json dans un objet
-            
-            if ((string)rss["Config"]["Done"] == "no"){ //si la sous section Done de Confid est egale à no alors
-                SetupNotifire setupNotifire = new SetupNotifire(); //initialise un nouveau formulaire
-                setupNotifire.ShowDialog();  //On met en pause le programme et affiche le formulaire
-            }
-
-            //Une fois le formulaire fermé on recharge le fichier pour evaluer les changements
-
-            contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile);    //On relis le fichier car il a pu changer
-            Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //on redeserialize
-            rss = JObject.Parse(Json.ToString());       //on recharge le json
-
-            ModuleC.listYes = (JArray)rss["Config"]["listYes"]; //on met a jour la liste des app en yes
-
-            //On prepare la 1ère notification
-            var title = "Notifire"; //titre
-            var text = "C'est ici que vous recevrez les notifications d'incident !"; //texte
-            var picture = ModuleC.pathPitcure + "RobotAa.png"; //image
-
-            Notif.NotifStartup(title, text, picture); //on affiche la notif
-
-            timer1.Start(); //on start le timer pour les incidents
-            timer_change_type.Start(); //on start le timer 2 (pour la conf)
-        }
-
+            timer1.Start(); //on start le timer
+        }               
 
         //Propriétés du formulaires...
-        private void immoToolStrip_Click(object sender, EventArgs e) //Lorsque l'utilisateur clique sur le systray "immo"
+        private void immoToolStrip_Click(object sender, EventArgs e)
         {
-            Process p = new Process(); //on definit un nouvel objet process
-            p.StartInfo.FileName = "https://docs.google.com/a/aramisauto.com/forms/d/e/1FAIpQLSc81fE_zGyhovE-rmtxDEayjZvZP-uFZiUzZMNe4JDQsEG46Q/viewform?c=0&w=1"; //On definie le liens
-            p.Start(); //On lance le lien dans un nouvel onglet
-        }
-        private void ZendeskToolStrip_Click(object sender, EventArgs e) //Lorsque l'utilisateur clique sur le systray "Zendesk"
-        {
-            Navigateur formNav = new Navigateur(); //On definie une formulaire et le lance
+            Process p = new Process();
+            p.StartInfo.FileName = "https://docs.google.com/a/aramisauto.com/forms/d/e/1FAIpQLSc81fE_zGyhovE-rmtxDEayjZvZP-uFZiUzZMNe4JDQsEG46Q/viewform?c=0&w=1";
+            p.Start();
 
-            ModuleC.nameUrl = "Contactez le service support"; //Titre present sur le formulaire
-            ModuleC.navUrl = "https://support.aramisauto.com/hc/fr/requests/new"; //url que l'on charge dans le formulaire
-            formNav.Show(); //On affiche le formulaire
         }
-        private void incidentsToolStrip_Click(object sender, EventArgs e) //Lorsque l'utilisateur clique sur le systray "Tableau de bord cachetHQ"
+
+        private void ZendeskToolStrip_Click(object sender, EventArgs e)
         {
-            Navigateur formNav = new Navigateur(); //On definie une formulaire et le lance
-            ModuleC.nameUrl = "Page d'incidents"; //Titre present sur le formulaire
-            ModuleC.navUrl = ModuleC.urlCachet; //url que l'on charge dans le formulaire
-            formNav.Show(); //On affiche le formulaire
+            Navigateur formNav = new Navigateur();
+
+            ModuleC.nameUrl = "Contactez le service support";
+            ModuleC.navUrl = "https://support.aramisauto.com/hc/fr/requests/new";
+            formNav.Show();
         }
-        private void infosToolStripMenuItem_Click(object sender, EventArgs e) //Lorsque l'utilisateur clique sur le systray "infos"
+
+        private void incidentsToolStrip_Click(object sender, EventArgs e)
+        {
+            Navigateur formNav = new Navigateur();;
+            ModuleC.nameUrl = "Page d'incidents";
+            ModuleC.navUrl = ModuleC.urlCachet;
+            formNav.Show();
+        }
+
+        private void infosToolStripMenuItem_Click(object sender, EventArgs e)
         {            
-            Form3 formInfos = new Form3(); //On definie une formulaire et le lance
-            formInfos.Show(); //On affiche le formulaire
-        }         
-        private void rentrerCesHeuresToolStripMenuItem_Click(object sender, EventArgs e) //Lorsque l'utilisateur clique sur le systray "redmine"
-        {
-            Navigateur formNav = new Navigateur(); //On definie une formulaire et le lance
-            ModuleC.nameUrl = "Redmine"; //Titre present sur le formulaire
-            ModuleC.navUrl = "https://redmine.aramisauto.com"; //url que l'on charge dans le formulaire
-            formNav.Show(); //On affiche le formulaire
-        } 
-        
+            Form3 formInfos = new Form3();
+            formInfos.Show();
+        }
 
+        private void rentrerCesHeuresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Navigateur formNav = new Navigateur(); ;
+            ModuleC.nameUrl = "Redmine";
+            ModuleC.navUrl = "https://redmine.aramisauto.com";
+            formNav.Show();
+        } 
+
+        
 
         //TIMER TOUTES LES 10 SECONDES
         private void timer1_Tick_1(object sender, EventArgs e) //Timer de verif de maj incident
         {
             Console.WriteLine("-------");
-            VerifNews(); //on Charge la fonction verifnew (ligne 146)
-        } 
-        private void timer_change_type_Tick(object sender, EventArgs e) //on verifie si l'utilisateur a changer son type dans les parametre
+            VerifNews();
+        }         
+
+        //VERIFS NEWS
+        private static readonly HttpClient client = new HttpClient();
+        public async void VerifNews()
         {
-            string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //on charge le fichier dans la variable contenuFile
-            dynamic Json = JsonConvert.DeserializeObject<dynamic>(contenuFile);     //On deserialize la variable en json dynamic
+            Console.WriteLine("VerifNews");
+            var responseNew = await client.GetStringAsync(ModuleC.urlNewIncident);
+            var reponseClot = await client.GetStringAsync(ModuleC.urlClotIncident);
 
-            JObject rss = JObject.Parse(Json.ToString());            //on charge le json dans un objet
+            
+            Console.WriteLine("new?");
+            if (ParseToJson(responseNew))
+            {
+                var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));
+                ParseToJsonCompenent(reponseName);
 
-            if ((string)rss["Config"]["type"] == "siege")
-            { //si la sous section Done de Confid est egale à no alors
-                this.rentrerCesHeuresToolStripMenuItem.Visible = true;
+                VerifAndGo();
             }
             else
             {
-                this.rentrerCesHeuresToolStripMenuItem.Visible = false;
+                Console.WriteLine("no new");
             }
-        }
 
-
-
-        //VERIFS NEWS
-        private static readonly HttpClient client = new HttpClient(); 
-        public async void VerifNews()
-        {
-            try
+            Console.WriteLine("");
+            Console.WriteLine("clot?");
+            if (ParseToJson(reponseClot))
             {
-                Console.WriteLine("VerifNews");
-                var responseNew = await client.GetStringAsync(ModuleC.urlNewIncident); //Url lien nouveaux incidents
-                var reponseClot = await client.GetStringAsync(ModuleC.urlClotIncident); //Url lien incidents clôts
+                var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));
+                ParseToJsonCompenent(reponseName);
 
-                incidentsToolStrip.Enabled = true; //si le client communique avec le serveur cachetHQ
-                notifyIcon1.Text = "Notifire - Service Opérationnel";
-
-                Console.WriteLine("new?");
-                if (ParseToJson(responseNew)) //Si il y a un incidents en cours
-                {
-                    var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident)); //On charge le contenu dans la variable
-                    ParseToJsonCompenent(reponseName); //On parse la variable grace a la fonction ParseToCompenent (ligne 192)
-
-                    VerifAndGo(); //Après avoir parser la variable et renseigné les bonnes variables pour créer une notif, on verifie si l'incident à déja été affiché à l'ecran (grace au cache)
-                }
-                else //si il n'y a aucun indicidents en cours
-                {
-                    Console.WriteLine("no new");
-                }
-
-                Console.WriteLine("");
-                Console.WriteLine("clot?");
-                if (ParseToJson(reponseClot)) //Si il y a un incidents Clot 
-                {
-                    var reponseName = await client.GetStringAsync(ModuleC.GetUrlCompenent(ModuleC.Component_id_Incident));  //On charge le contenu dans la variable
-                    ParseToJsonCompenent(reponseName); //On parse la variable grace a la fonction ParseToCompenent (ligne 192)
-
-                    VerifAndGo(); //Après avoir parser la variable et renseigné les bonnes variables pour créer une notif, on verifie si l'incident à déja été affiché à l'ecran (grace au cache)
-                }
-                else //si il n'y a aucun indicidents clot
-                {
-                    Console.WriteLine("no clot");
-                }
+                VerifAndGo();
             }
-            catch {
-                incidentsToolStrip.Enabled = false; //si le client ne communique pas avec le serveur cachetHQ
-                notifyIcon1.Text = "Notfire - Service Indisponible";
-            }            
+            else
+            {
+                Console.WriteLine("no clot");
+            }
+            
         }
 
 
         //PARSER JSON
         public bool ParseToJson(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
         {    
-            var message = JsonConvert.DeserializeObject<dynamic>(HttpString); //On deserialise le contenue du lien dans la variable message
+            var message = JsonConvert.DeserializeObject<dynamic>(HttpString);
 
-            if (message.data.Count != 0) //Si il y a plus de 1 incident
+            if (message.data.Count != 0)
             {
-                foreach (var num in message.data) //On charge les differentes variables
+                foreach (var num in message.data)
                 {
                     ModuleC.Id_Incident = num.id.ToString();
+                    Console.WriteLine("numeros d'incident = " + ModuleC.Id_Incident);
                     ModuleC.Name_Incident = num.name.ToString();
+                    Console.WriteLine("nom de l'incident = " + ModuleC.Name_Incident);
                     ModuleC.Message_Incident = num.message.ToString();
+                    Console.WriteLine("Contenu de l'incident = " + ModuleC.Message_Incident);
                     ModuleC.Component_id_Incident = num.component_id.ToString();
+                    Console.WriteLine("Numéros de composant = " + ModuleC.Component_id_Incident);
                     ModuleC.Status_Incident = num.status.ToString();
+                    Console.WriteLine("Status du composant = " + ModuleC.Status_Incident);
                     ModuleC.Date_Create_Incident = DateCreater(num.created_at.ToString());
+                    Console.WriteLine("Date d'incident = " + ModuleC.Date_Create_Incident);
                 }       
 
-                return true; //On retourne True pour dire qu'il y a eu un incident
+                return true;
             }
             else
             {                
-                return false; //On retourne True pour dire qu'il n'y a pas d'incident
+                return false;
             }
 
         }
 
         public void ParseToJsonCompenent(string HttpString) //https://www.youtube.com/watch?v=CjoAYslTKX0   //Fonction qui renvoie une string et qui permet de recuperer des infos precices ici tous les incidents ouverts
         {
-            var message = JsonConvert.DeserializeObject<dynamic>(HttpString); //On deserialise le contenue du lien dans la variable message
+            var message = JsonConvert.DeserializeObject<dynamic>(HttpString);
 
-            foreach (var num in message.data) //On charge les nom du composant dans la variables
-            {
+            foreach (var num in message.data)
+                {
                     ModuleC.Compenent_Name = num.name.ToString();
                 }                           
         }
 
         
-        //VERIFY IN THE CACHE AND SEND NOTIFICATION
-        public void VerifAndGo() //Verification de doublons et envoie de notif
+        //VERIFY IN THE CACHE
+        public void VerifAndGo()
         {
             Console.WriteLine("Verif&go");
             string contenuFile = System.IO.File.ReadAllText(ModuleC.pathSetupFile); //On ecrit dans la variable contenuFile le contenu du fichier config dans appdata
@@ -231,65 +187,58 @@ namespace WindowsFormsApp1
                         
             Console.WriteLine(ModuleC.Compenent_Name);
 
-            if (Json.Config.listYes.ToString().Contains(ModuleC.Compenent_Name) || Json.Config.listOblige.ToString().Contains(ModuleC.Compenent_Name)) //Verifie si present dans le conf app ok
+            if (ModuleC.Status_Incident == "1") //Si c'est un nouvel incident alors on traite de cache des nouveaux incidents
             {
-                Console.WriteLine(ModuleC.Compenent_Name + " Existe dans la liste des applis autorisées");
-
-                if (ModuleC.Status_Incident == "1") //Si c'est un nouvel incident alors on traite de cache des nouveaux incidents
+                if (!Json.Cache.New.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
                 {
-                    if (!Json.Cache.New.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
-                    {
-                        Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
+                    Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
 
-                        JArray cacheNewID = (JArray)cache["New"];  //On créer une liste contenant tous les id d'incidents
-                        cacheNewID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
+                    JArray cacheNewID = (JArray)cache["New"];  //On créer une liste contenant tous les id d'incidents
+                    cacheNewID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
 
-                        string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
+                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
 
-                        System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
+                    System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
 
-                        Console.WriteLine("Creation Notif");
-                        Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
-
-                    }
-                    else //si l'incident est déja enregistré dans le cache
-                    {
-                        Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID"); //on affiche rien
-                    }
+                    Console.WriteLine("Creation Notif");
+                    Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
 
                 }
-                else if (ModuleC.Status_Incident == "4") //Si c'est un hold incident alors on traite de cache des anciens incidents
+                else
                 {
-                    if (!Json.Cache.Hold.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
-                    {
-                        Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
-
-                        JArray cacheHoldID = (JArray)cache["Hold"];  //On créer une liste contenant tous les id d'incidents
-                        cacheHoldID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
-
-                        string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
-
-                        System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
-
-                        Console.WriteLine("Creation Notif");
-                        Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
-
-                    }
-                    else //si l'incident est déja enregistré dans le cache
-                    {
-                        Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID"); //on affiche rien
-                    }
+                    Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID");
                 }
+
             }
-            else //Si l'application de l'incident n'est pas choisi par l'utilisateur
+            else if (ModuleC.Status_Incident == "4") //Si c'est un hold incident alors on traite de cache des anciens incidents
             {
-                Console.WriteLine(ModuleC.Compenent_Name + " ne fais pas partis des applis autorisé");
-            }   
+                if (!Json.Cache.Hold.ToString().Contains(ModuleC.Id_Incident)) //Si l'id de l'incident existe pas dans le cache alors
+                {
+                    Console.WriteLine(ModuleC.Id_Incident + " n'éxiste pas dans le cache ID");
+
+                    JArray cacheHoldID = (JArray)cache["Hold"];  //On créer une liste contenant tous les id d'incidents
+                    cacheHoldID.Add(ModuleC.Id_Incident); //On ajoute notre nouvelle incident à la liste
+
+                    string output = Newtonsoft.Json.JsonConvert.SerializeObject(rss, Newtonsoft.Json.Formatting.Indented); //Variable contenant le json modifié
+
+                    System.IO.File.WriteAllText(ModuleC.pathSetupFile, output); //Ecriture du nouveau json
+
+                    Console.WriteLine("Creation Notif");
+                    Notif.CreateNotif(ModuleC.Name_Incident, ModuleC.Message_Incident, ModuleC.Component_id_Incident); //Generation de la notif         
+
+                }
+                else
+                {
+                    Console.WriteLine(ModuleC.Id_Incident + " est déja le cache ID");
+                }
+                
+            }    
+
         }
 
 
         //Create DATETIME
-        public DateTime DateCreater(string hold_date) //Generation de la date.
+        public DateTime DateCreater(string hold_date)
         {
             var new_date = new DateTime(Convert.ToInt16(hold_date.Substring(0, 4)),     //Année
                                         Convert.ToInt16(hold_date.Substring(5, 2)),     //Mois

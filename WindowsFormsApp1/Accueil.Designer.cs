@@ -38,7 +38,6 @@
             this.incidentsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.infosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer_change_type = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,11 +105,6 @@
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // timer_change_type
-            // 
-            this.timer_change_type.Interval = 1000;
-            this.timer_change_type.Tick += new System.EventHandler(this.timer_change_type_Tick);
-            // 
             // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,7 +130,6 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         public System.Windows.Forms.ToolStripMenuItem rentrerCesHeuresToolStripMenuItem;
         public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Timer timer_change_type;
     }
 }
 

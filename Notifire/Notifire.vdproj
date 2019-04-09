@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_016676A509C246AD84603FAE2096CE02"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0288F2719B8A1F1D176E8EEB75129CE5"
         "OwnerKey" = "8:_0E14B082B0F94DC881209393F8E48B1D"
         "MsmSig" = "8:_UNDEFINED"
@@ -299,12 +305,6 @@
         {
         "MsmKey" = "8:_A74680C233061ECADE232318292C0AE3"
         "OwnerKey" = "8:_0E14B082B0F94DC881209393F8E48B1D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AAA1ADF40EC54590B3026A2E8382B401"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -872,6 +872,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -896,6 +904,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -926,6 +942,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_016676A509C246AD84603FAE2096CE02"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Documents\\Config.json"
+            "TargetName" = "8:Config.json"
+            "Tag" = "8:"
+            "Folder" = "8:_FFEC713B12A240EC846F1B043C5FEA47"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0288F2719B8A1F1D176E8EEB75129CE5"
             {
             "AssemblyRegister" = "3:1"
@@ -2057,26 +2093,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AAA1ADF40EC54590B3026A2E8382B401"
-            {
-            "SourcePath" = "8:..\\..\\Config.json"
-            "TargetName" = "8:Config.json"
-            "Tag" = "8:"
-            "Folder" = "8:_FFEC713B12A240EC846F1B043C5FEA47"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AACA3D934D5582FB96993FA12065A177"
             {
             "AssemblyRegister" = "3:1"
@@ -2782,6 +2798,17 @@
                     "Property" = "8:_6FB6B14F67514EB5BB2DAFADF0C9C62A"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_14BFFB4E66DD4CBD976DB80657070733"
+                            {
+                            "Name" = "8:Pictures"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_7FB0CC3B7C014CF6AA08CADC91A50517"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
