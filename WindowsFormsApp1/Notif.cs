@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using System.Net;
 
 namespace WindowsFormsApp1
 {
@@ -21,11 +22,14 @@ namespace WindowsFormsApp1
             ps.Runspace = rs;
 
             ps.AddScript("Import-Module BurntToast");
+            Console.WriteLine("New-BurntToastNotification -Text " + titre + ", \"" + commentaire + "\" -AppLogo \"" + picture + "\"");
             ps.AddScript("New-BurntToastNotification -Text " + titre + ", \"" + commentaire + "\" -AppLogo \"" + picture + "\"");
             ps.Invoke();
 
 
             rs.Close();
+
+
         }
 
         public static void CreateNotif(string title_Incident, string content_Incident, string compenent_Incident)
@@ -33,43 +37,23 @@ namespace WindowsFormsApp1
             //Declaration des variables
             string title = title_Incident;
             string content = content_Incident;
-            string picture = null;
+            string picture = ModuleC.pathPitcure + "warning.png";
             string signature = "Via Notifonder";
             int compenent = Convert.ToInt16(compenent_Incident);
-
-            switch (compenent)
+                       
+            using (WebClient client = new WebClient())
             {
-                case 1: //Slack icone
-                    picture = ModuleC.pathPitcure + "Slack_Icon.png";
-                    break;
-                case 2: //Aramis Icone
-                    picture = ModuleC.pathPitcure + "logoAa.png";
-                    break;
-                case 3: //Zendesk Icone
-                    picture = ModuleC.pathPitcure + "zendesk.png";
-                    break;
-                case 4: //Redmine Icone
-                    picture = ModuleC.pathPitcure + "redmine.png";
-                    break;
-                case 5: //Gmail Icone
-                    picture = ModuleC.pathPitcure + "Gmail.png";
-                    break;
-                case 6: //Avaya icone
-                    picture = ModuleC.pathPitcure + "Avaya.png";
-                    break;
-                case 7: //Salesforce Icone
-                    picture = ModuleC.pathPitcure + "Salesforce.png";
-                    break;
-                case 8: //Odigo Icone
-                    picture = ModuleC.pathPitcure + "Odigo.png";
-                    break;
-                case 9: //Robusto Icone
-                    picture = ModuleC.pathPitcure + "Robusto.png";
-                    break;
-                case 10: //Autres
-                    picture = ModuleC.pathPitcure + "warning.png";
-                    break;
+                Console.WriteLine(ModuleC.urlPicture + compenent);
+                Console.WriteLine(ModuleC.pathPitcure + compenent + ".png");
+                client.DownloadFile(ModuleC.urlPicture + compenent, ModuleC.pathRoamingFile + "Pictures\\" + compenent+".png");
             }
+
+            if (compenent != 0)
+            {
+                picture = ModuleC.pathRoamingFile + "Pictures\\" + compenent + ".png";
+            }
+            Console.WriteLine("Chemin image = " + picture);
+
 
             if (ModuleC.Status_Incident == "1")
             {
@@ -90,6 +74,7 @@ namespace WindowsFormsApp1
             PowerShell ps = PowerShell.Create();
             ps.Runspace = rs;
 
+            Console.WriteLine("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\"");
             ps.AddScript("New-BurntToastNotification -Text \"" + title + "\", \"" + content + "\" -AppLogo \"" + picture + "\"");
             ps.Invoke();
 

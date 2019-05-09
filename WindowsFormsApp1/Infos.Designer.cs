@@ -104,16 +104,6 @@
             this.panel1.Size = new System.Drawing.Size(255, 55);
             this.panel1.TabIndex = 6;
             // 
-            // btn_setting
-            // 
-            this.btn_setting.Location = new System.Drawing.Point(30, 11);
-            this.btn_setting.Name = "btn_setting";
-            this.btn_setting.Size = new System.Drawing.Size(75, 23);
-            this.btn_setting.TabIndex = 6;
-            this.btn_setting.Text = "Paramètres";
-            this.btn_setting.UseVisualStyleBackColor = true;
-            this.btn_setting.Click += new System.EventHandler(this.btn_setting_Click);
-            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

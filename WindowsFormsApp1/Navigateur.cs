@@ -19,36 +19,33 @@ namespace WindowsFormsApp1
         
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.CenterToScreen();
-            lbl_name_link.Text = ModuleC.nameUrl;
+            this.CenterToScreen(); //centrer le formulaire au milieu de l'ecran
+            lbl_name_link.Text = ModuleC.nameUrl; //on charge les deux variables necessaire au fonctionnement du formulaire
             //webBrowser1.ScriptErrorsSuppressed = true;
-            webBrowser1.Navigate(ModuleC.navUrl);
+            webBrowser1.Navigate(ModuleC.navUrl); //On charge le lien url
             
-        }
-
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoBack();
+            webBrowser1.GoBack(); //revenir à la page precedente
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoForward();
+            webBrowser1.GoForward(); //aller à l'avant
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            webBrowser1.Refresh();
+            webBrowser1.Refresh();  //Rafraichir
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close(); //fermer le formulaire
         }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) { }
     }
 }

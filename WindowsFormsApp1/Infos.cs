@@ -18,6 +18,11 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -34,7 +39,7 @@ namespace WindowsFormsApp1
             p.StartInfo.FileName = "https://www.aramisauto.com/";
             p.Start();
         }
-        
+
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
         }
@@ -61,14 +66,7 @@ namespace WindowsFormsApp1
 
         private void Form3_KeyDown(object sender, KeyEventArgs e)
         {
-            
-        }
 
-        private void btn_setting_Click(object sender, EventArgs e)
-        {
-            SetupNotifire formSetup = new SetupNotifire();
-            ModuleC.firstLaunch = "no";
-            formSetup.Show();
         }
     }
 }
